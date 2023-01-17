@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="todo.css">
+  </head>
+  <body>
+    <h1>To-do list</h1>
+    <div class="container">
+       <input id="input" type="text" />
+       <button id="ADD" class="Button">add to your to-do list</button>
+       <br \>
+       <ul class="list" id="listContainer">
+        
+        
+       </ul>
+
+    
+    
+    </div>
+    <script>
+      let Addbutton = document.getElementById('ADD');
+
+      
+
+      let listContainer = document.getElementById('listContainer');
+
+      let input = document.getElementById('input');
+
+      
+
+      
+
+      Addbutton.addEventListener('click', function(){ 
+
+        
+        const line=document.createElement('li');
+        if (input.value !==''){
+          var task={
+            item: input.value ,
+            checked: false ,
+          };
+
+        }
+        else{
+          alert('please insert your to-do');
+          return;
+        }
+
+       
+        
+        
+        line.innerHTML=` <input type='checkbox' class='checkbox' >
+        ${input.value}
+        <button class='deleteButton'>Delete</button> `;
+
+        listContainer.appendChild(line);
+        input.value = "";
+      
+        listContainer.addEventListener('click', function(event){
+          if ((event.target.type ==='checkbox') && ( task.checked===false)){
+
+            line.style.textDecoration = "line-through";
+            task.checked=true;}
+
+          if (( event.target.type==='checkbox') && (task.checked===true)){
+             line.style.textDecoration = "none";
+          }
+          if(event.target.classList.container('deleteButton')){
+            listContainer.removeChild(line);}
+        });
+        
+        
+      });
+      input.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+        event.preventDefault();
+        Addbutton.click();
+        }
+      });
+
+        
+      
+    </script>
+  </body>
+</html>
